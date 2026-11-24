@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Outing design review</title>
+<style>
+:root { --page:#1B1916; --raised:#26231F; --line:#3B372F; --ink:#F2EEE6; --muted:#A9A297; --accent:#EFE7D6; }
+* { box-sizing:border-box; }
+body { margin:0; background:var(--page); color:var(--ink); font:16px/1.55 ui-rounded,-apple-system,system-ui,sans-serif; }
+.wrap { max-width:1180px; margin:0 auto; padding:48px 16px 96px; }
+h1 { font-size:clamp(30px,5vw,44px); line-height:1.1; margin:0 0 12px; letter-spacing:-0.01em; }
+.intro p { color:var(--muted); max-width:68ch; margin:8px 0; }
+.intro strong { color:var(--ink); }
+.ask { background:var(--raised); border:1px solid var(--line); border-radius:20px; padding:20px 22px; margin:28px 0 8px; max-width:760px; }
+.ask h3 { margin:0 0 8px; font-size:17px; }
+.ask ul { margin:0; padding-left:20px; color:var(--muted); }
+.ask li { margin:4px 0; }
+nav { position:sticky; top:0; z-index:5; background:color-mix(in srgb,var(--page) 92%,transparent); backdrop-filter:blur(10px);
+  display:flex; gap:6px; overflow-x:auto; padding:12px 16px; margin:24px -16px 0; border-bottom:1px solid var(--line); }
+nav a { flex:none; color:var(--ink); text-decoration:none; font-size:14px; background:var(--raised); border:1px solid var(--line); border-radius:999px; padding:6px 13px; }
+nav a:hover { border-color:var(--muted); }
+.toggle { margin-left:auto; flex:none; display:flex; align-items:center; gap:8px; font-size:14px; color:var(--muted); padding-left:12px; white-space:nowrap; }
+.screen { padding:56px 0 8px; scroll-margin-top:56px; }
+.screen header { display:flex; gap:14px; align-items:baseline; margin-bottom:18px; }
+.num { font:600 14px ui-monospace,Menlo,monospace; color:var(--muted); }
+h2 { margin:0; font-size:24px; }
+.screen header p { margin:2px 0 0; color:var(--muted); }
+.pair { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:20px; max-width:760px; }
+body.showlarge .pair { grid-template-columns:repeat(3,minmax(0,1fr)); max-width:none; }
+.lg { display:none; } body.showlarge .lg { display:block; }
+figure { margin:0; }
+figcaption { font-size:13px; font-weight:700; letter-spacing:.04em; text-transform:uppercase; color:var(--muted); margin-bottom:8px; }
+figcaption.new { color:var(--accent); }
+figure img { display:block; width:100%; height:auto; border-radius:22px; border:1px solid var(--line); cursor:zoom-in; }
+.blank { aspect-ratio:603/1311; border-radius:22px; border:1px dashed var(--line); display:grid; place-items:center; color:var(--muted); font-size:14px; padding:12px; text-align:center; }
+dialog { border:0; padding:0; background:transparent; max-width:none; max-height:none; }
+dialog::backdrop { background:rgba(0,0,0,.85); }
+dialog img { max-height:94vh; max-width:94vw; border-radius:22px; display:block; }
+footer { color:var(--muted); font-size:14px; margin-top:64px; }
+@media (max-width:640px) { body.showlarge .pair { grid-template-columns:repeat(2,minmax(0,1fr)); } .pair { gap:10px; } figure img, .blank { border-radius:14px; } }
+</style></head>
+<body>
+<div class="wrap">
+<div class="intro">
+<h1>Outing: design review</h1>
+<p><strong>Outing</strong> is an iPhone app for couples to collect date ideas, plan dates and keep memories from them. It uses a dark “photo album” look.</p>
+<p>Each screen below shows the app <strong>before</strong> and <strong>after</strong> a polish pass. All screens are from the iPhone 17 simulator with made-up demo data. Tap any screenshot to enlarge it.</p>
+<div class="ask"><h3>What I'd love your eye on</h3><ul>
+<li>Does it feel like one consistent, finished app, or are there screens that look off?</li>
+<li>Type, spacing and hierarchy: what's too loud, too quiet or crowded?</li>
+<li>Do the buttons and controls clearly look tappable?</li>
+<li>The date wheel and its result card: does it feel fun or cheap?</li>
+<li>The photo prints with cream borders: charming, or dated?</li>
+<li>Anything you'd change first if you only had a day.</li>
+</ul></div>
+<p>Please say which screen number you mean, for example “04 Board: the filter pills feel cramped.”</p>
+</div>
+<nav><a href="#welcome">Welcome</a><a href="#home">Home</a><a href="#home2">Home, scrolled</a><a href="#board">Board</a><a href="#board2">Board, scrolled</a><a href="#detail">Idea page</a><a href="#detail2">Idea page, scrolled</a><a href="#add">Add an idea</a><a href="#pick">Date roulette</a><a href="#pick-spinning">Wheel spinning</a><a href="#pick-result">Wheel result</a><a href="#pick-edit">Edit the wheel</a><a href="#memories">Memories</a><a href="#settings">Settings</a><label class="toggle"><input type="checkbox" id="lg"> Show largest text size</label></nav>
+<section class="screen" id="welcome">
+  <header><span class="num">01</span><div><h2>Welcome</h2><p>First launch, before signing in.</p></div></header>
+  <div class="pair"><figure class="none"><figcaption>Before</figcaption><div class="blank">New screenshot, no before</div></figure><figure><figcaption class="new">After</figcaption><img src="img/after/default-welcome.jpg" alt="Welcome after" loading="lazy" width="603" height="1311"></figure></div>
+</section><section class="screen" id="home">
+  <header><span class="num">02</span><div><h2>Home</h2><p>Greeting, next date and the countdown.</p></div></header>
+  <div class="pair"><figure><figcaption>Before</figcaption><img src="img/before/default-home.jpg" alt="Home before" loading="lazy" width="603" height="1311"></figure><figure><figcaption class="new">After</figcaption><img src="img/after/default-home.jpg" alt="Home after" loading="lazy" width="603" height="1311"></figure><figure class="lg"><figcaption>Largest text size</figcaption><img src="img/large/ax-home.jpg" alt="Home at largest text size" loading="lazy" width="603" height="1311"></figure></div>
+</section><section class="screen" id="home2">
+  <header><span class="num">03</span><div><h2>Home, scrolled</h2><p>The “Can&#x27;t pick?” wheel card and recent memories.</p></div></header>
+  <div class="pair"><figure><figcaption>Before</figcaption><img src="img/before/default-home2.jpg" alt="Home, scrolled before" loading="lazy" width="603" height="1311"></figure><figure><figcaption class="new">After</figcaption><img src="img/after/default-home2.jpg" alt="Home, scrolled after" loading="lazy" width="603" height="1311"></figure><figure class="lg"><figcaption>Largest text size</figcaption><img src="img/large/ax-home2.jpg" alt="Home, scrolled at largest text size" loading="lazy" width="603" height="1311"></figure></div>
+</section><section class="screen" id="board">
+  <header><span class="num">04</span><div><h2>Board</h2><p>Saved / Planned / Past dates switch, filters and the grid of ideas.</p></div></header>
+  <div class="pair"><figure><figcaption>Before</figcaption><img src="img/before/default-board.jpg" alt="Board before" loading="lazy" width="603" height="1311"></figure><figure><figcaption class="new">After</figcaption><img src="img/after/default-board.jpg" alt="Board after" loading="lazy" width="603" height="1311"></figure><figure class="lg"><figcaption>Largest text size</figcaption><img src="img/large/ax-board.jpg" alt="Board at largest text size" loading="lazy" width="603" height="1311"></figure></div>
+</section><section class="screen" id="board2">
+  <header><span class="num">05</span><div><h2>Board, scrolled</h2><p>Ideas without a photo get a text card.</p></div></header>
+  <div class="pair"><figure><figcaption>Before</figcaption><img src="img/before/default-board2.jpg" alt="Board, scrolled before" loading="lazy" width="603" height="1311"></figure><figure><figcaption class="new">After</figcaption><img src="img/after/default-board2.jpg" alt="Board, scrolled after" loading="lazy" width="603" height="1311"></figure><figure class="lg"><figcaption>Largest text size</figcaption><img src="img/large/ax-board2.jpg" alt="Board, scrolled at largest text size" loading="lazy" width="603" height="1311"></figure></div>
+</section><section class="screen" id="detail">
+  <header><span class="num">06</span><div><h2>Idea page</h2><p>Photo, title and facts.</p></div></header>
+  <div class="pair"><figure><figcaption>Before</figcaption><img src="img/before/default-detail.jpg" alt="Idea page before" loading="lazy" width="603" height="1311"></figure><figure><figcaption class="new">After</figcaption><img src="img/after/default-detail.jpg" alt="Idea page after" loading="lazy" width="603" height="1311"></figure><figure class="lg"><figcaption>Largest text size</figcaption><img src="img/large/ax-detail.jpg" alt="Idea page at largest text size" loading="lazy" width="603" height="1311"></figure></div>
+</section><section class="screen" id="detail2">
+  <header><span class="num">07</span><div><h2>Idea page, scrolled</h2><p>“Up for it?” answers and the main action.</p></div></header>
+  <div class="pair"><figure><figcaption>Before</figcaption><img src="img/before/default-detail2.jpg" alt="Idea page, scrolled before" loading="lazy" width="603" height="1311"></figure><figure><figcaption class="new">After</figcaption><img src="img/after/default-detail2.jpg" alt="Idea page, scrolled after" loading="lazy" width="603" height="1311"></figure><figure class="lg"><figcaption>Largest text size</figcaption><img src="img/large/ax-detail2.jpg" alt="Idea page, scrolled at largest text size" loading="lazy" width="603" height="1311"></figure></div>
+</section><section class="screen" id="add">
+  <header><span class="num">08</span><div><h2>Add an idea</h2><p>Paste a link or fill it in by hand.</p></div></header>
+  <div class="pair"><figure><figcaption>Before</figcaption><img src="img/before/default-add.jpg" alt="Add an idea before" loading="lazy" width="603" height="1311"></figure><figure><figcaption class="new">After</figcaption><img src="img/after/default-add.jpg" alt="Add an idea after" loading="lazy" width="603" height="1311"></figure><figure class="lg"><figcaption>Largest text size</figcaption><img src="img/large/ax-add.jpg" alt="Add an idea at largest text size" loading="lazy" width="603" height="1311"></figure></div>
+</section><section class="screen" id="pick">
+  <header><span class="num">09</span><div><h2>Date roulette</h2><p>The wheel before spinning.</p></div></header>
+  <div class="pair"><figure><figcaption>Before</figcaption><img src="img/before/default-pick.jpg" alt="Date roulette before" loading="lazy" width="603" height="1311"></figure><figure><figcaption class="new">After</figcaption><img src="img/after/default-pick.jpg" alt="Date roulette after" loading="lazy" width="603" height="1311"></figure><figure class="lg"><figcaption>Largest text size</figcaption><img src="img/large/ax-pick.jpg" alt="Date roulette at largest text size" loading="lazy" width="603" height="1311"></figure></div>
+</section><section class="screen" id="pick-spinning">
+  <header><span class="num">10</span><div><h2>Wheel spinning</h2></div></header>
+  <div class="pair"><figure><figcaption>Before</figcaption><img src="img/before/default-pick-spinning.jpg" alt="Wheel spinning before" loading="lazy" width="603" height="1311"></figure><figure><figcaption class="new">After</figcaption><img src="img/after/default-pick-spinning.jpg" alt="Wheel spinning after" loading="lazy" width="603" height="1311"></figure><figure class="lg"><figcaption>Largest text size</figcaption><img src="img/large/ax-pick-spinning.jpg" alt="Wheel spinning at largest text size" loading="lazy" width="603" height="1311"></figure></div>
+</section><section class="screen" id="pick-result">
+  <header><span class="num">11</span><div><h2>Wheel result</h2><p>The winning slice lights up, then this card comes up.</p></div></header>
+  <div class="pair"><figure><figcaption>Before</figcaption><img src="img/before/default-pick-result.jpg" alt="Wheel result before" loading="lazy" width="603" height="1311"></figure><figure><figcaption class="new">After</figcaption><img src="img/after/default-pick-result.jpg" alt="Wheel result after" loading="lazy" width="603" height="1311"></figure><figure class="lg"><figcaption>Largest text size</figcaption><img src="img/large/ax-pick-result.jpg" alt="Wheel result at largest text size" loading="lazy" width="603" height="1311"></figure></div>
+</section><section class="screen" id="pick-edit">
+  <header><span class="num">12</span><div><h2>Edit the wheel</h2><p>Choose which ideas go on the wheel.</p></div></header>
+  <div class="pair"><figure><figcaption>Before</figcaption><img src="img/before/default-pick-edit.jpg" alt="Edit the wheel before" loading="lazy" width="603" height="1311"></figure><figure><figcaption class="new">After</figcaption><img src="img/after/default-pick-edit.jpg" alt="Edit the wheel after" loading="lazy" width="603" height="1311"></figure><figure class="lg"><figcaption>Largest text size</figcaption><img src="img/large/ax-pick-edit.jpg" alt="Edit the wheel at largest text size" loading="lazy" width="603" height="1311"></figure></div>
+</section><section class="screen" id="memories">
+  <header><span class="num">13</span><div><h2>Memories</h2><p>Photos and notes from past dates.</p></div></header>
+  <div class="pair"><figure><figcaption>Before</figcaption><img src="img/before/default-memories.jpg" alt="Memories before" loading="lazy" width="603" height="1311"></figure><figure><figcaption class="new">After</figcaption><img src="img/after/default-memories.jpg" alt="Memories after" loading="lazy" width="603" height="1311"></figure><figure class="lg"><figcaption>Largest text size</figcaption><img src="img/large/ax-memories.jpg" alt="Memories at largest text size" loading="lazy" width="603" height="1311"></figure></div>
+</section><section class="screen" id="settings">
+  <header><span class="num">14</span><div><h2>Settings</h2></div></header>
+  <div class="pair"><figure><figcaption>Before</figcaption><img src="img/before/default-settings.jpg" alt="Settings before" loading="lazy" width="603" height="1311"></figure><figure><figcaption class="new">After</figcaption><img src="img/after/default-settings.jpg" alt="Settings after" loading="lazy" width="603" height="1311"></figure><figure class="lg"><figcaption>Largest text size</figcaption><img src="img/large/ax-settings.jpg" alt="Settings at largest text size" loading="lazy" width="603" height="1311"></figure></div>
+</section>
+<footer>Outing · design review build, November 2026</footer>
+</div>
+<dialog id="zoom"><img alt=""></dialog>
+<script>
+const d=document.getElementById("zoom"), z=d.querySelector("img");
+document.querySelectorAll("figure img").forEach(i=>i.addEventListener("click",()=>{z.src=i.src;z.alt=i.alt;d.showModal();}));
+d.addEventListener("click",()=>d.close());
+document.getElementById("lg").addEventListener("change",e=>document.body.classList.toggle("showlarge",e.target.checked));
+</script>
+</body></html>
